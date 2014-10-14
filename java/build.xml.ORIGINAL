@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+
+<project name="Phase2" default="jar" basedir=".">
+
+	<description>"Phase2 Data Objects and JiBX Transport"</description>
+
+	<!-- The directories -->
+	<property name="class-dir" value="/home/dev/src/phase2/java/bin" />
+  	<property name="class-dir2" value="/home/dev/bin/phase2/java" />
+	<property name="deploy-dir" value="/home/dev/bin/javalib"/>
+	<property name="lib-dir" value="/home/dev/bin/javalib" />
+	<property name="third-party-lib-dir" value="/home/dev/bin/javalib_third_party" />
+	<property name="jibx-lib-dir" value="${third-party-lib-dir}/jibx" />
+
+	<!-- other definitions -->
+
+	<property name="jar-name" value="ngat_new_phase2"/>
+
+	<!-- Prepare build directories -->
+
+	<target name="prepare" description="Prepare build directories">
+		<echo message="Building: Phase2 Data Objects and JiBX Transport objects" />
+		<mkdir dir="${class-dir}" />
+		<tstamp>
+			<format property="BUILD" pattern="yyyyMMdd_HHmm" locale="en" />
+		</tstamp>
+		<echo message="Build date: ${BUILD}" />
+	</target>
+
+
+	<!-- Cleanup dross -->
+
+	<target name="clean" description="Clean out dross">
+		<delete verbose="true">
+			<fileset dir="." includes="**/*~" defaultexcludes="false" />
+		</delete>
+	</target>
+
+	
+	<!-- 
+	<javac srcdir="." 
+					destdir="${class-dir}" 
+					debug="on"
+					source="1.5" 
+					target="1.5"
+					bootclasspath="/usr/java/jdk1.5.0_15/jre/lib/rt.jar"> 
+	-->
+
+	<!-- Compile all sources -->
+	<target name="javac" depends="prepare" description="Compile sources">
+		
+		<!-- removed source and target 1.4 tags in the following javac's 13/2/13-->
+		<!--
+		pre, 19/8/13 was this:
+		<javac srcdir="." 
+			destdir="${class-dir2}" 
+			debug="on">
+		-->
+		<!--
+		pre move to 64 bit Linux for development (Spring 2014), was:
+		bootclasspath="/usr/java/jdk1.5.0_15/jre/lib/rt.jar">
+		-->
+		<!-- then, before 14/5/14 this was included, it was deleted in order to ty and get all the kit running on Java 7 -->
+		<!--
+		<javac srcdir="." 
+			destdir="${class-dir2}" 
+			debug="on"
+			source="1.5" 
+			target="1.5"
+			includeantruntime="false"
+			bootclasspath="/usr/java/jdk1.5.0_22/jre/lib/rt.jar">-->
+		
+		<javac srcdir="." 
+					destdir="${class-dir2}" 
+					debug="on"
+					source="1.6" 
+					target="1.6">
+			<classpath>
+				<pathelement path="${classpath}" />
+				<fileset dir="${lib-dir}">
+					<include name="*.jar" />
+					<exclude name="ngat_new_phase2.jar" />
+				</fileset>
+				<fileset dir="${third-party-lib-dir}">
+					<include name="jydodb.jar" />
+					<include name="odmg.jar" />
+					<include name="jibx/jibx-run.jar" />
+					<include name="log4j-1.2.13.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+
+		<!--
+		<javac srcdir="." 
+			destdir="${class-dir}" 
+			debug="on">
+
+			<classpath>
+				<pathelement path="${classpath}" />
+				<fileset dir="${lib-dir}">
+					<include name="*.jar" />
+					<exclude name="ngat_phase2*.jar" />
+				</fileset>
+				<fileset dir="${third-party-lib-dir}">
+					<include name="jydodb.jar" />
+					<include name="odmg.jar" />
+					<include name="jibx/jibx-run.jar" />
+					<include name="log4j-1.2.13.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	-->
+	</target>
+
+
+
+	<!-- augment the .class files with JiBX code-->
+	<target name="jibx" depends="javac" description="Jibx compile - modify and create classes">
+		<!-- set up the JiBX binding compiler task definition -->
+		<taskdef name="bind" classname="org.jibx.binding.ant.CompileTask" classpath="${jibx-lib-dir}/jibx-bind.jar"/>
+		<!-- run the JiBX binding compiler to embed the class changes -->
+		<bind verbose="false" load="true" binding="${basedir}/binding.xml">
+			<classpath>
+				<pathelement path="${class-dir2}" />
+				<pathelement location="${jibx-lib-dir}/jibx-extras.jar" />
+				<pathelement location="${jibx-lib-dir}/jibx-run.jar" />
+				<pathelement location="${jibx-lib-dir}/xpp3.jar" />
+			</classpath>
+		</bind>
+	</target>
+
+
+	<!-- Deploy to JAR with Jibx bindings after compile-->
+	<target name="jar" depends="jibx" description="Create JAR">
+		<echo message="Build number: ${BUILD}" />
+		<echo message="Creating ${deploy-dir}/${jar-name}.jar" />
+		<delete file="${deploy-dir}/${jar-name}.jar"/>
+		<jar jarfile="${deploy-dir}/${jar-name}.jar" basedir="${class-dir2}" update="false" />
+	</target>
+
+</project>
+

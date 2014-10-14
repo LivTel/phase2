@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- JIBX BINDING DEFINITION FOR ALL PHASE 2 OBJECTS AND TRANSPORT WRAPPERS -->
+
+<binding forwards="false" value-style="attribute">
+	
+	<!-- *************************** PHASE2, ACCESS AND HISTORY MODEL COMPONENTS *************************** -->
+	
+	<!-- abstract / interfaces -->
+	
+	<mapping class="ngat.phase2.IPhase2" abstract="true"/>
+ 	<mapping class="ngat.phase2.IPhase2Identity" abstract="true"/>
+ 	
+	<mapping class="ngat.phase2.IAccessPermission" abstract="true"/>
+	<mapping class="ngat.phase2.IAccount" abstract="true"/>
+	<!--  is ok to uncomment this when start using it, + can uncomment implementor -->
+	<!-- <mapping class="ngat.phase2.IExecutionFailureContext" 	abstract="true"/>  -->
+	<mapping class="ngat.phase2.IFilterSpec" abstract="true"/>
+ 	<mapping class="ngat.phase2.IGroup" abstract="true"/>
+ 	<mapping class="ngat.phase2.IHistoryItem" abstract="true"/>
+ 	<mapping class="ngat.phase2.ILinkage" abstract="true"/>
+ 	<mapping class="ngat.phase2.ILock" abstract="true"/>
+ 	<mapping class="ngat.phase2.ILoginRecord" abstract="true"/>
+ 	<mapping class="ngat.phase2.IObservingConstraint"abstract="true"/>
+ 	<mapping class="ngat.phase2.IObservingPreference" abstract="true"/>
+ 	<mapping class="ngat.phase2.IProgram" abstract="true"/>
+ 	<mapping class="ngat.phase2.IProposal" abstract="true"/>
+ 	<mapping class="ngat.phase2.IPublishedSystemProperties" abstract="true"/>
+ 	<mapping class="ngat.phase2.IRevision" abstract="true"/>
+ 	<mapping class="ngat.phase2.ISemester" abstract="true"/>
+ 	<mapping class="ngat.phase2.ISemesterPeriod" abstract="true"/>
+ 	<mapping class="ngat.phase2.ITag" abstract="true"/>
+ 	<mapping class="ngat.phase2.ITelescopeConfig" abstract="true"/>
+ 	<mapping class="ngat.phase2.ITimePeriod" abstract="true"/>
+ 	<mapping class="ngat.phase2.ITimingConstraint" abstract="true"/>
+ 	<mapping class="ngat.phase2.ITransaction" abstract="true"/>
+ 	<mapping class="ngat.phase2.IUser" abstract="true"/>
+ 	<mapping class="ngat.phase2.IVersion" abstract="true"/>
+	
+	<!-- implementations -->
+ 	
+ 	<mapping name="x-access-permission" class="ngat.phase2.XAccessPermission" extends="ngat.phase2.IAccessPermission">
+ 		<structure map-as="ngat.phase2.XPhase2Identity" 							usage="optional"/>
+ 		<value name="user-id"				field="userID" 							usage="optional"/>
+		<value name="proposal-id"			field="proposalID" 						usage="optional"/>
+		<value name="role"					field="role" 							usage="optional"/>
+ 	</mapping>
+	
+	<mapping name="x-account" class="ngat.phase2.XAccount" extends="ngat.phase2.IAccount">
+		<structure map-as="ngat.phase2.XPhase2Identity" 							usage="optional"/>
+		<!-- <value name="type"					field="type" 							usage="optional"/> -->
+		<!-- <value name="name"					field="name" 							usage="optional"/> -->
+		<!-- <value name="description"			field="description" 					usage="optional"/> -->
+		<!-- <value name="originator"			field="originator" 						usage="optional"/> -->
+		<!-- <value name="start-time"			field="startTime" 						usage="optional"/> -->
+		<!-- <value name="end-time"				field="endTime" 						usage="optional"/> -->
+		<value name="allocated"				field="allocated" 						usage="optional"/>
+		<value name="consumed"				field="consumed" 						usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-airmass-constraint" class="ngat.phase2.XAirmassConstraint" extends="ngat.phase2.IObservingConstraint">
+		<value name="maximum-airmass" 		field="maximumAirmass"				usage="optional"/>
+	</mapping>
+
+	<!-- 
+	<mapping name="x-basic-execution-failure-context" class="ngat.phase2.XBasicExecutionFailureContext" extends="ngat.phase2.IExecutionFailureContext">
+		<value name="error-code" 			field="errorCode"				usage="optional"/>
+		<value name="error-message" 		field="errorMessage"			usage="optional"/>
+	</mapping>
+	 -->
+	 
+ 	<mapping name="x-ephemeris-timing-constraint" class="ngat.phase2.XEphemerisTimingConstraint" extends="ngat.phase2.ITimingConstraint">
+ 		<value name="start" 				field="start" 							usage="optional"/>
+		<value name="end" 					field="end" 							usage="optional"/>
+		<value name="cycle-period" 			field="cyclePeriod" 					usage="optional"/>
+		<value name="window" 				field="window" 							usage="optional"/>
+		<value name="phase" 				field="phase" 							usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-ephemeris-track-node" class="ngat.phase2.XEphemerisTrackNode">
+    	<value name="time" 					field="time"							usage="optional"/>
+		<value name="ra" 					field="ra" 								usage="optional"/>
+		<value name="dec" 					field="dec" 							usage="optional"/>
+		<value name="ra-dot" 				field="raDot" 							usage="optional"/>
+		<value name="dec-dot" 				field="decDot" 							usage="optional"/>
+ 	</mapping>
+
+	<mapping name="x-filter-def" class="ngat.phase2.XFilterDef" > 
+		<value name="filter-name" field="filterName" usage="optional"/> 
+	</mapping>
+	
+	<mapping name="x-filter-spec" class="ngat.phase2.XFilterSpec" extends="ngat.phase2.IFilterSpec">
+		<collection field="filterList" 
+			factory="org.jibx.runtime.Utility.arrayListFactory"
+			get-method="getFilterList" 
+			set-method="setFilterList" usage="optional"/>
+	</mapping>
+	
+ 	<mapping name="x-fixed-timing-constraint" class="ngat.phase2.XFixedTimingConstraint" extends="ngat.phase2.ITimingConstraint">
+ 		<value name="fixed-time" 			field="fixedTime" 						usage="optional"/>
+		<value name="slack" 				field="slack" 							usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-flexible-timing-constraint" class="ngat.phase2.XFlexibleTimingConstraint" extends="ngat.phase2.ITimingConstraint">
+ 		<value name="activation-date" 		field="activationDate" 					usage="optional"/>
+		<value name="expiry-date" 			field="expiryDate" 						usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-group" class="ngat.phase2.XGroup" extends="ngat.phase2.IGroup">
+ 		<structure map-as="ngat.phase2.XPhase2Identity" 									usage="optional"/>
+ 		<structure field="timingConstraint" map-as="ngat.phase2.ITimingConstraint" 			usage="optional"/>
+		<collection field="observingConstraints" 
+			factory="org.jibx.runtime.Utility.arrayListFactory" 
+			get-method="listObservingConstraints" 
+			set-method="setObservingConstraints"/>
+		<!-- 
+		<collection field="observingPreferences" 
+			factory="org.jibx.runtime.Utility.arrayListFactory" 
+			get-method="listObservingPreferences" 
+			set-method="setObservingPreferences" usage="optional"/> 
+		-->
+		<value name="priority" field="priority" usage="optional"/>
+		<value name="active" field="active" usage="optional"/>
+		<value name="urgent" field="urgent" usage="optional"/>
+ 	</mapping>
+   	
+   	<mapping name="x-history-item" class="ngat.phase2.XHistoryItem" extends="ngat.phase2.IHistoryItem">
+ 		<structure map-as="ngat.phase2.XPhase2Identity" usage="optional"/>
+ 		<value name="scheduled-time"		field="scheduledTime" usage="optional"/>
+ 		<value name="completion-time"		field="completionTime" usage="optional"/>
+ 		<value name="completion-status"		field="completionStatus" usage="optional"/>
+ 		<value name="error-code"			field="errorCode" usage="optional"/>
+ 		<value name="error-message"			field="errorMessage" usage="optional"/>
+		<!-- qosStatistics, JiBX doesn't support sets -->
+ 	</mapping>
+ 	
+	<mapping name="x-hour-angle-constraint" class="ngat.phase2.XHourAngleConstraint" extends="ngat.phase2.IObservingConstraint">
+		<value name="minimum-hour-angle" 		field="minimumHourAngle"				usage="optional"/>
+ 		<value name="maximum-hour-angle" 		field="maximumHourAngle"				usage="optional"/>
+	</mapping>
+	
+	<mapping name="x-lock" class="ngat.phase2.XLock">
+		<value name="id" 					field="id" 								usage="optional"/>
+		<value name="key" 					field="key" 							usage="optional"/>
+		<value name="client-ref" 			field="clientRef" 						usage="optional"/>
+		<value name="date" 					field="date" 							usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-login-record" class="ngat.phase2.XLoginRecord" extends="ngat.phase2.ILoginRecord">
+		<structure map-as="ngat.phase2.XPhase2Identity" 							usage="optional"/>
+		<value name="user-id" 				field="userId" 							usage="optional"/>
+		<value name="java-version" 			field="javaVersion" 					usage="optional"/>
+		<value name="os-arch" 				field="osArch" 							usage="optional"/>
+		<value name="os-name" 				field="osName" 							usage="optional"/>
+		<value name="os-version" 			field="osVersion" 						usage="optional"/>
+		<value name="screen-size" 			field="screenSize" 						usage="optional"/>
+ 	</mapping>
+ 	
+ 	<!--
+	<mapping name="x-lunar-distance-constraint" class="ngat.phase2.XLunarDistanceConstraint"  extends="ngat.phase2.IObservingConstraint">
+		<value name="minimum-lunar-distance" 		field="minimumLunarDistance"		usage="optional"/>
+	</mapping>
+	
+	<mapping name="x-lunar-elevation-constraint" class="ngat.phase2.XLunarElevationConstraint" extends="ngat.phase2.IObservingConstraint">
+		<value name="lunar-elevation-category" 	field="lunarElevationCategory"		usage="optional"/>
+	</mapping>
+	
+	<mapping name="x-lunar-phase-constraint" class="ngat.phase2.XLunarPhaseConstraint" extends="ngat.phase2.IObservingConstraint">
+		<value name="maximum-lunar-phase" 	field="maximumLunarPhase"		usage="optional"/>
+	</mapping>
+	-->
+	
+	<mapping name="x-minimum-interval-timing-constraint" class="ngat.phase2.XMinimumIntervalTimingConstraint" extends="ngat.phase2.ITimingConstraint">
+ 		<value name="start" 				field="start" 							usage="optional"/>
+		<value name="end" 					field="end" 							usage="optional"/>
+		<value name="minimum-interval" 		field="minimumInterval" 				usage="optional"/>
+		<value name="maximum-repeats" 		field="maximumRepeats" 					usage="optional"/>
+ 	</mapping>
+ 	
+	<mapping name="x-monitor-timing-constraint" class="ngat.phase2.XMonitorTimingConstraint" extends="ngat.phase2.ITimingConstraint">
+ 		<value name="start-date" 			field="startDate" 						usage="optional"/>
+		<value name="end-date" 				field="endDate" 						usage="optional"/>
+		<value name="period" 				field="period" 							usage="optional"/>
+		<value name="window" 				field="window" 							usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-phase2" class="ngat.phase2.XPhase2" extends="ngat.phase2.IPhase2">
+		<value name="name" 					field="name"							usage="optional"/>
+ 	</mapping>
+ 	
+ 	<!-- <mapping name="x-phase2-identity" class="ngat.phase2.XPhase2Identity" extends="ngat.phase2.IPhase2"> -->
+ 	<mapping name="x-phase2-identity" class="ngat.phase2.XPhase2Identity" extends="ngat.phase2.IPhase2Identity">
+		<value name="id" 					field="id"								usage="optional"/>
+		<value name="name" 					field="name"							usage="optional"/>
+		<structure field="lock" 			map-as="ngat.phase2.XLock" 				usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-photometricity-constraint" class="ngat.phase2.XPhotometricityConstraint" extends="ngat.phase2.IObservingConstraint">
+		<value name="maximum-extinction" 	 field="maximumExtinction"				usage="optional"/>
+		<value name="photometricity-category" field="photometricityCategory"		usage="optional"/>
+	</mapping>
+	
+	<mapping name="x-program" class="ngat.phase2.XProgram" extends="ngat.phase2.IProgram">
+ 		<structure map-as="ngat.phase2.XPhase2Identity" 							usage="optional"/>
+ 		<value name="description"			field="description" 					usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-proposal" class="ngat.phase2.XProposal" extends="ngat.phase2.IProposal">
+ 		<structure map-as="ngat.phase2.XPhase2Identity" 				usage="optional"/>
+ 		<value name="priority" 				field="priority" 			usage="optional"/>
+    	<value name="title" 				field="title" 				usage="optional"/>
+    	<value name="science-abstract" 		field="scienceAbstract" 	usage="optional"/>
+		<value name="expiry-date" 			field="expiryDate" 			usage="optional"/>
+		<value name="activation-date" 		field="activationDate" 		usage="optional"/>
+		<value name="enabled" 				field="enabled" 			usage="optional"/>
+		<value name="allow-urgent-groups" 	field="allowUrgentGroups"	usage="optional"/>
+		<value name="allow-fixed-groups" 	field="allowFixedGroups"	usage="optional"/>
+		<value name="priority-offset" 		field="priorityOffset"		usage="optional"/>
+		<value name="type-code" 			field="typeCode"			usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-published-system-properties" class="ngat.phase2.XPublishedSystemProperties" extends="ngat.phase2.IPublishedSystemProperties">
+ 		<collection field="keysList" 
+			factory="org.jibx.runtime.Utility.arrayListFactory" 
+			get-method="getKeysList" 
+			set-method="setKeysList"/>
+		<collection field="valuesList" 
+			factory="org.jibx.runtime.Utility.arrayListFactory" 
+			get-method="getValuesList" 
+			set-method="setValuesList"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-revision" class="ngat.phase2.XRevision" extends="ngat.phase2.IRevision">
+ 		<structure map-as="ngat.phase2.XPhase2Identity" 							usage="optional"/>
+		<value name="time" 					field="time"							usage="optional"/>
+		<value name="editor" 				field="editor"							usage="optional"/>
+		<value name="comment" 				field="comment"							usage="optional"/>
+	</mapping>
+ 	
+	<mapping name="x-seeing-constraint" class="ngat.phase2.XSeeingConstraint" extends="ngat.phase2.IObservingConstraint">
+		<value name="seeing-value" 			field="seeingValue"					usage="optional"/>
+	</mapping>
+
+	<mapping name="x-semester" class="ngat.phase2.XSemester" extends="ngat.phase2.ISemester">
+		<structure map-as="ngat.phase2.XPhase2Identity" 							usage="optional"/>
+ 		<value name="start-date" 			field="startDate"						usage="optional"/>
+ 		<value name="end-date" 				field="endDate"							usage="optional"/>
+ 	</mapping>
+	
+	<mapping name="x-semester-period" class="ngat.phase2.XSemesterPeriod" extends="ngat.phase2.ISemesterPeriod">
+		<structure field="firstSemester" 	map-as="ngat.phase2.ISemester" 			usage="optional"/>
+		<structure field="secondSemester" 	map-as="ngat.phase2.ISemester" 			usage="optional"/>
+ 		<value name="is-overlap"			field="isOverlap"						usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-simple-observing-preference" class="ngat.phase2.XSimpleObservingPreference" extends="ngat.phase2.IObservingPreference">
+ 		<value name="message" 				field="message"							usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-sky-brightness-constraint" class="ngat.phase2.XSkyBrightnessConstraint" extends="ngat.phase2.IObservingConstraint">
+		<value name="sky-brightness-category" field="skyBrightnessCategory"			usage="optional"/>
+	</mapping>
+ 	
+ 	<!-- 
+	<mapping name="x-sla-comet-elements" class="ngat.phase2.XSlaCometElements" extends="ngat.phase2.IOrbitalElements">
+    	<value name="element-epoch" 		field="elementEpoch" 					usage="optional"/>
+		<value name="long-asc-node" 		field="longAscNode" 					usage="optional"/>
+		<value name="arg-peri" 				field="argPeri" 						usage="optional"/>
+		<value name="peri-dist" 			field="periDist" 						usage="optional"/>
+		<value name="orbital-inc" 			field="orbitalInc" 						usage="optional"/>
+		<value name="eccentricity" 			field="eccentricity" 					usage="optional"/>
+	</mapping>
+	
+	<mapping name="x-sla-major-planet-elements" class="ngat.phase2.XSlaMajorPlanetElements" extends="ngat.phase2.IOrbitalElements">
+    	<value name="element-epoch" 		field="elementEpoch" 					usage="optional"/>
+		<value name="long-asc-node" 		field="longAscNode" 					usage="optional"/>
+		<value name="orbital-inc" 			field="orbitalInc" 						usage="optional"/>
+		<value name="eccentricity" 			field="eccentricity" 					usage="optional"/>
+		<value name="mean-distance" 		field="meanDistance" 					usage="optional"/>
+		<value name="daily-motion" 			field="dailyMotion" 					usage="optional"/>
+		<value name="long-peri" 			field="longPeri" 						usage="optional"/>
+		<value name="mean-longitude" 		field="meanLongitude" 					usage="optional"/>
+	</mapping>
+	
+	<mapping name="x-sla-minor-planet-elements" class="ngat.phase2.XSlaMinorPlanetElements" extends="ngat.phase2.IOrbitalElements">
+    	<value name="element-epoch" 		field="elementEpoch" 					usage="optional"/>
+    	<value name="long-asc-node" 		field="longAscNode" 					usage="optional"/>
+    	<value name="arg-peri" 				field="argPeri"							usage="optional"/>
+    	<value name="orbital-inc" 			field="orbitalInc" 						usage="optional"/>
+		<value name="eccentricity" 			field="eccentricity" 					usage="optional"/>
+		<value name="mean-anomaly" 			field="meanAnomaly" 					usage="optional"/>
+		<value name="mean-distance" 		field="meanDistance" 					usage="optional"/>
+	</mapping>
+	 -->
+	
+	<!-- 
+	<mapping name="x-solar-elevation-constraint" class="ngat.phase2.XSolarElevationConstraint" extends="ngat.phase2.IObservingConstraint">
+		<value name="elevation-category" 	field="elevationCategory"			usage="optional"/>
+	</mapping>
+	 -->
+	 
+	<mapping name="x-tag" class="ngat.phase2.XTag" extends="ngat.phase2.ITag">
+ 		<structure map-as="ngat.phase2.XPhase2Identity" 							usage="optional"/>
+ 		<value name="description"			field="description" 					usage="optional"/>
+ 	</mapping>
+ 	
+	<mapping name="x-time-period" class="ngat.phase2.XTimePeriod">
+    	<value name="start" 				field="start" 							usage="optional"/>
+    	<value name="end" 					field="end" 							usage="optional"/>
+	</mapping>
+
+	<mapping name="x-transaction" class="ngat.phase2.XTransaction" extends="ngat.phase2.ITransaction">
+ 		<structure map-as="ngat.phase2.XPhase2Identity" 							usage="optional"/>
+ 		<value name="time"					field="time" 							usage="optional"/>
+ 		<value name="client-reference"		field="clientReference" 				usage="optional"/>
+ 		<value name="amount"				field="amount" 							usage="optional"/>
+ 		<value name="comment"				field="comment" 						usage="optional"/>	
+ 		<value name="balance-type"			field="balanceType" 					usage="optional"/>	
+ 	</mapping>
+ 	
+ 	<mapping name="x-user" class="ngat.phase2.XUser" extends="ngat.phase2.IUser">
+ 		<structure map-as="ngat.phase2.XPhase2Identity" usage="optional"/>
+		<value name="password"				field="password" 						usage="optional"/>
+	    <value name="last-name"				field="lastName" 						usage="optional"/>
+	    <value name="first-name"			field="firstName" 						usage="optional"/>
+	    <value name="department"			field="department" 						usage="optional"/>
+	    <value name="organization"			field="organization" 					usage="optional"/>
+	    <value name="address"				field="address" 						usage="optional"/>
+	    <value name="city"					field="city" 							usage="optional"/>
+	    <value name="region"				field="region" 							usage="optional"/>
+	    <value name="country"				field="country" 						usage="optional"/>
+	    <value name="postal-code"			field="postalCode" 						usage="optional"/>
+	    <value name="email"					field="email" 							usage="optional"/>
+	    <value name="telephone"				field="telephone" 						usage="optional"/>
+	    <value name="fax"					field="fax" 							usage="optional"/>
+	    <value name="isSuperUser"			field="isSuperUser" 					usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="x-version" class="ngat.phase2.XVersion" extends="ngat.phase2.IVersion">
+    	<value name="major" 			field="major" 					usage="optional"/>
+    	<value name="minor" 			field="minor" 					usage="optional"/>
+    	<value name="revision" 			field="revision"				usage="optional"/>
+    	<value name="minor-revision" 	field="minorRevision"			usage="optional"/>
+	</mapping>
+	
+	<!-- *************************** OBSERVATION SEQUENCE COMPONENTS *************************** -->
+
+	<mapping class="ngat.phase2.ISequenceComponent" abstract="true"/>
+	
+		<mapping name="x-branch-component" class="ngat.phase2.XBranchComponent" extends="ngat.phase2.ISequenceComponent">
+	 		<value name="component-name" field="componentName" usage="optional"/>
+	 		<collection field="sequence" 
+				factory="org.jibx.runtime.Utility.arrayListFactory" 
+				get-method="listChildComponents" 
+				set-method="setSequence"/>
+	 	</mapping>
+		
+		<mapping name="x-executive-component" class="ngat.phase2.XExecutiveComponent" extends="ngat.phase2.ISequenceComponent">
+			<value name="component-name" field="componentName" usage="optional"/>
+	 		<structure field="action" map-as="ngat.phase2.IExecutiveAction" 			usage="optional"/>
+	 	</mapping>
+ 	
+ 			<mapping class="ngat.phase2.IExecutiveAction" abstract="true"/>
+
+			<mapping name="i-acquisition-config" class="ngat.phase2.IAcquisitionConfig" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.acquisitionConfigFactory" />
+			
+				<mapping name="x-acquisition-config" class="ngat.phase2.XAcquisitionConfig" extends="ngat.phase2.IAcquisitionConfig">
+			 		<structure map-as="ngat.phase2.IAcquisitionConfig"								usage="optional"/>
+					<value name="mode" 					 		field="mode"						usage="optional"/>
+					<value name="target-instrument-name" 		field="targetInstrumentName"		usage="optional"/>
+					<value name="acquisition-instrument-name" 	field="acquisitionInstrumentName"	usage="optional"/>
+					<value name="allow-alternative" 			field="allowAlternative"			usage="optional"/>
+					<value name="precision" 			field="precision"			usage="optional"/>
+				</mapping>
+
+			<mapping name="i-aperture-config" class="ngat.phase2.IApertureConfig" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.apertureConfigFactory" />
+				
+				<mapping name="x-aperture-config" class="ngat.phase2.XApertureConfig" extends="ngat.phase2.IApertureConfig">
+			 		<structure map-as="ngat.phase2.IApertureConfig"							usage="optional"/>
+				</mapping>
+
+			<mapping name="i-autoguider-config" class="ngat.phase2.IAutoguiderConfig" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.autoguiderConfigFactory" />
+				
+				<mapping name="x-autoguider-config" class="ngat.phase2.XAutoguiderConfig" extends="ngat.phase2.IAutoguiderConfig" >
+					<structure map-as="ngat.phase2.IAutoguiderConfig"							usage="optional"/>
+			    	<value name="autoguider-mode" 		field="autoguiderMode" 					usage="optional"/>
+					<value name="autoguider-name" 		field="autoguiderName" 					usage="optional"/>
+			 	</mapping>
+
+			<mapping name="i-beamsteering-config" class="ngat.phase2.IBeamSteeringConfig" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.beamsteeringConfigFactory" />
+				
+				<mapping name="x-beamsteering-config" class="ngat.phase2.XBeamSteeringConfig" extends="ngat.phase2.IBeamSteeringConfig">
+					<structure map-as="ngat.phase2.IBeamSteeringConfig"							usage="optional"/>
+					<structure field="upperSlideConfig" map-as="ngat.phase2.XOpticalSlideConfig" 	usage="optional"/>
+					<structure field="lowerSlideConfig" map-as="ngat.phase2.XOpticalSlideConfig" 	usage="optional"/>
+				</mapping>
+			
+			<mapping name="i-opticalslide-config" class="ngat.phase2.IOpticalSlideConfig" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.opticalslideConfigFactory" />
+				
+				<mapping name="x-opticalslide-config" class="ngat.phase2.XOpticalSlideConfig" extends="ngat.phase2.IOpticalSlideConfig">
+					<structure map-as="ngat.phase2.IOpticalSlideConfig"							usage="optional"/>
+					<value name="slide"	field="slide" 											usage="optional"/>
+					<value name="selected-element-name"	field="selectedElementName" 			usage="optional"/>
+				</mapping>
+			
+			<mapping name="i-focuscontrol" class="ngat.phase2.IFocusControl" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.focuscontrolFactory" />
+				
+				<mapping name="x-focuscontrol" class="ngat.phase2.XFocusControl" extends="ngat.phase2.IFocusControl">
+					<structure map-as="ngat.phase2.IFocusControl"								usage="optional"/>
+					<value name="instrument-name"	field="instrumentName" 						usage="optional"/>
+				</mapping>
+				
+			<mapping name="i-tiptilt-absolute-offset" class="ngat.phase2.ITipTiltAbsoluteOffset" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.tiptiltabsoluteoffsetFactory" />
+				
+				<mapping name="x-tiptilt-absolute-offset" class="ngat.phase2.XTipTiltAbsoluteOffset" extends="ngat.phase2.ITipTiltAbsoluteOffset">
+					<structure map-as="ngat.phase2.ITipTiltAbsoluteOffset"						usage="optional"/>
+			    	<value name="offset-1" 				field="offset1" 						usage="optional"/>
+			    	<value name="offset-2" 				field="offset2" 						usage="optional"/>
+			    	<value name="instrument-name" 		field="instrumentName" 					usage="optional"/>
+			    	<value name="offset-type" 			field="offsetType" 						usage="optional"/>
+			    	<value name="tip-tilt-id" 			field="tipTiltId" 						usage="optional"/>
+				</mapping>
+			
+			<mapping name="i-calibration" class="ngat.phase2.ICalibration" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.calibrationFactory" />
+
+				<mapping name="x-calibration" class="ngat.phase2.XCalibration" extends="ngat.phase2.ICalibration">
+					<structure map-as="ngat.phase2.XPhase2Identity" usage="optional"/>
+			 		<structure map-as="ngat.phase2.ICalibration" usage="optional"/>
+				</mapping>
+				
+				<mapping name="i-lamp-def" class="ngat.phase2.ILampDef" 
+				factory="ngat.phase2.util.Factory.lampDefFactory" />
+				
+				<mapping name="x-lamp-def" class="ngat.phase2.XLampDef" extends="ngat.phase2.ILampDef">
+			 		<structure map-as="ngat.phase2.ILampDef"	usage="optional"/>
+			 		<value name="lamp-name"	field="lampName" usage="optional"/>
+				</mapping>
+				
+				<mapping name="x-arc" class="ngat.phase2.XArc" extends="ngat.phase2.XCalibration">
+					<structure map-as="ngat.phase2.XCalibration" usage="optional"/>
+					<structure field="lamp" map-as="ngat.phase2.ILampDef" usage="optional"/>
+				</mapping>
+				
+				<mapping name="x-bias" class="ngat.phase2.XBias" extends="ngat.phase2.XCalibration">
+					<structure map-as="ngat.phase2.XCalibration" usage="optional"/>
+				</mapping>
+				
+				<mapping name="x-dark" class="ngat.phase2.XDark" extends="ngat.phase2.XCalibration">
+					<structure map-as="ngat.phase2.XCalibration" usage="optional"/>
+			 		<value name="exposure-time" field="exposureTime" usage="optional"/>
+				</mapping>
+				
+				<mapping name="x-lamp-flat" class="ngat.phase2.XLampFlat" extends="ngat.phase2.XCalibration">
+					<structure map-as="ngat.phase2.XCalibration" usage="optional"/>
+			 		<structure field="lamp" map-as="ngat.phase2.ILampDef" usage="optional"/>
+				</mapping>
+				
+			<mapping name="i-instrument-config-selector" class="ngat.phase2.IInstrumentConfigSelector" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.instrumentConfigSelectorFactory" />
+				
+				<mapping name="x-instrument-config-selector" class="ngat.phase2.XInstrumentConfigSelector" extends="ngat.phase2.IInstrumentConfigSelector">
+			 		<structure map-as="ngat.phase2.IInstrumentConfigSelector"	usage="optional"/>
+					<structure field="instrumentConfig" map-as="ngat.phase2.IInstrumentConfig" usage="optional"/>
+				</mapping>
+				
+			<mapping name="i-exposure" class="ngat.phase2.IExposure" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.exposureFactory" />
+			
+				<mapping name="x-multiple-exposure" class="ngat.phase2.XMultipleExposure" extends="ngat.phase2.IExposure"> 	
+					<structure map-as="ngat.phase2.XPhase2" usage="optional"/>
+					<value name="exposure-time" field="exposureTime" usage="optional"/>
+					<value name="repeat-count" field="repeatCount" usage="optional"/>
+					<value name="standard" field="standard" usage="optional"/>
+				</mapping>
+				
+				<mapping name="x-period-exposure" class="ngat.phase2.XPeriodExposure" extends="ngat.phase2.IExposure"> 	
+					<structure map-as="ngat.phase2.XPhase2" usage="optional"/>
+					<value name="exposure-time" field="exposureTime" usage="optional"/>
+					<value name="standard" field="standard" usage="optional"/>
+				</mapping>
+				
+				<mapping name="x-period-run-at-exposure" class="ngat.phase2.XPeriodRunAtExposure" extends="ngat.phase2.IExposure"> 	
+					<structure map-as="ngat.phase2.XPhase2" usage="optional"/>
+					<value name="exposure-length" field="exposureLength" usage="optional"/>
+					<value name="total-exposure-duration" field="totalExposureDuration" usage="optional"/>
+					<value name="run-at-time" field="runAtTime" usage="optional"/>
+					<value name="standard" field="standard" usage="optional"/>
+				</mapping>
+ 	
+			<mapping name="i-focus-offset" class="ngat.phase2.IFocusOffset" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.focusOffsetFactory" />
+ 			
+				<mapping name="x-focus-offset" class="ngat.phase2.XFocusOffset" extends="ngat.phase2.IFocusOffset">
+			 		<structure map-as="ngat.phase2.IFocusOffset"								usage="optional"/>
+					<value name="relative" 				field="relative" 						usage="optional"/>
+					<value name="offset" 				field="offset" 							usage="optional"/>
+				</mapping>
+				 	
+ 			<mapping name="i-instrument-config" class="ngat.phase2.IInstrumentConfig" 
+				extends="ngat.phase2.IPhase2Identity" 
+				factory="ngat.phase2.util.Factory.instrumentConfigFactory"/>
+			
+				<mapping name="x-instrument-config" class="ngat.phase2.XInstrumentConfig" extends="ngat.phase2.IInstrumentConfig">
+					<structure map-as="ngat.phase2.XPhase2Identity" usage="optional"/>
+			 		<structure map-as="ngat.phase2.IInstrumentConfig" usage="optional"/>
+					<value name="instrument-name" 		field="instrumentName" usage="optional"/>
+					<structure field="detectorConfig" map-as="ngat.phase2.IDetectorConfig" usage="optional"/>
+				</mapping>
+
+					<mapping class="ngat.phase2.IDetectorConfig" abstract="true"/>
+
+						<mapping name="x-detector-config" class="ngat.phase2.XDetectorConfig" extends="ngat.phase2.IDetectorConfig">
+					 		<structure map-as="ngat.phase2.IDetectorConfig" usage="optional"/>
+							<value name="xBin" field="xBin" usage="optional"/>
+							<value name="yBin" field="yBin" usage="optional"/>
+							<collection field="windows" 
+								factory="org.jibx.runtime.Utility.arrayListFactory" 
+								get-method="listWindows" 
+								set-method="setWindows" usage="optional"/>
+						</mapping>
+						
+							<mapping class="ngat.phase2.IWindow" abstract="true"/>
+							
+								<mapping name="x-window" class="ngat.phase2.XWindow" extends="ngat.phase2.IWindow">
+									<structure map-as="ngat.phase2.IWindow" usage="optional"/>
+									<value name="x" field="x" usage="optional"/>
+									<value name="y" field="y" usage="optional"/>
+									<value name="w" field="w" usage="optional"/>
+									<value name="h" field="h" usage="optional"/>
+								</mapping>
+
+
+					<mapping name="x-dual-beam-spectrograph-instrument-config" 
+				 				class="ngat.phase2.XDualBeamSpectrographInstrumentConfig" 
+				 				extends="ngat.phase2.XInstrumentConfig">
+				 		<structure map-as="ngat.phase2.XPhase2Identity"								usage="optional"/>
+				 		<structure map-as="ngat.phase2.XInstrumentConfig" 							usage="optional"/>
+				    	<value name="resolution" 			field="resolution" 						usage="optional"/>
+				 	</mapping>
+					
+					<mapping name="x-imager-instrument-config" class="ngat.phase2.XImagerInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
+						<structure map-as="ngat.phase2.XInstrumentConfig" usage="optional"/>
+						<structure field="filterSpec" map-as="ngat.phase2.XFilterSpec" usage="optional"/>
+					</mapping>
+					
+					<mapping name="x-tip-tilt-imager-instrument-config" class="ngat.phase2.XTipTiltImagerInstrumentConfig" extends="ngat.phase2.XImagerInstrumentConfig">
+						<structure map-as="ngat.phase2.XImagerInstrumentConfig" usage="optional"/>
+						<value name="gain" 			field="gain"								usage="optional"/>
+					</mapping>
+					
+					<mapping name="x-polarimeter-instrument-config" class="ngat.phase2.XPolarimeterInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
+						<structure map-as="ngat.phase2.XInstrumentConfig"							usage="optional"/>
+						<value name="gain" 				field="gain"								usage="optional"/>
+					</mapping>
+					
+					<mapping name="x-spectrograph-instrument-config" class="ngat.phase2.XSpectrographInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
+						<structure map-as="ngat.phase2.XInstrumentConfig"							usage="optional"/>
+						<value name="wavelength" 			field="wavelength"						usage="optional"/>
+					</mapping>
+					
+					<mapping name="x-imaging-spectrograph-instrument-config" class="ngat.phase2.XImagingSpectrographInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
+						<structure map-as="ngat.phase2.XInstrumentConfig"								usage="optional"/>
+						<value name="grism-position" 			field="grismPosition"						usage="optional"/>
+						<value name="grism-rotation" 			field="grismRotation"						usage="optional"/>
+						<value name="slit-position" 				field="slitPosition"							usage="optional"/>
+					</mapping>
+    
+			<mapping name="i-mosaic-offset" class="ngat.phase2.IMosaicOffset" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.mosaicOffsetFactory"/>
+				
+				<mapping name="x-position-offset" class="ngat.phase2.XPositionOffset" extends="ngat.phase2.IMosaicOffset">
+					<structure map-as="ngat.phase2.IMosaicOffset"								usage="optional"/>
+			 		<value name="ra-offset" 			field="raOffset"						usage="optional"/>
+			 		<value name="dec-offset" 			field="decOffset"						usage="optional"/>
+			 		<value name="is-relative" 			field="isRelative"						usage="optional"/>
+			 	</mapping>
+			
+			<mapping name="i-set-acquisition-instrument" class="ngat.phase2.ISetAcquisitionInstrument" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.setAcquisitionInstrumentFactory" />
+				
+			<mapping name="x-set-acquisition-instrument" class="ngat.phase2.XSetAcquisitionInstrument" extends="ngat.phase2.ISetAcquisitionInstrument">
+		 		<structure map-as="ngat.phase2.ISetAcquisitionInstrument"						usage="optional"/>
+		 		<value name="instrument-name" 			field="instrumentName" 					usage="optional"/>
+		 		<value name="allow-alternative" 		field="allowAlternative" 				usage="optional"/>
+		 	</mapping>
+			
+			<mapping name="i-slew" class="ngat.phase2.ISlew" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.slewFactory" />
+				
+				<mapping name="x-slew" class="ngat.phase2.XSlew" extends="ngat.phase2.ISlew">
+			 		<structure map-as="ngat.phase2.ISlew"										usage="optional"/>
+					<structure field="target" map-as="ngat.phase2.ITarget" 						usage="optional"/>
+					<structure field="rotatorConfig" map-as="ngat.phase2.IRotatorConfig" 		usage="optional"/>
+					<value name="uses-non-sidereal-tracking" field="usesNonSiderealTracking"	usage="optional"/>
+				</mapping>
+						
+			<mapping name="i-rotator-config" class="ngat.phase2.IRotatorConfig" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.rotatorConfigFactory"/>
+				
+				<mapping name="x-rotator-config" class="ngat.phase2.XRotatorConfig" extends="ngat.phase2.IRotatorConfig">
+			 		<structure map-as="ngat.phase2.IRotatorConfig"								usage="optional"/>
+					<value name="rotator-mode" 			field="rotatorMode"						usage="optional"/>
+					<value name="rotator-angle" 		field="rotatorAngle"					usage="optional"/>
+					<value name="instrument-name" 		field="instrumentName"					usage="optional"/>
+				</mapping>
+			
+			<mapping name="i-target-selector" class="ngat.phase2.ITargetSelector" 
+				extends="ngat.phase2.IExecutiveAction" 
+				factory="ngat.phase2.util.Factory.targetSelectorFactory" />
+				
+				<mapping name="x-target-selector" class="ngat.phase2.XTargetSelector" extends="ngat.phase2.ITargetSelector">
+			 		<structure map-as="ngat.phase2.ITargetSelector"	usage="optional"/>
+					<structure field="target" map-as="ngat.phase2.ITarget" usage="optional"/>
+				</mapping>
+				
+			<mapping name="i-target" class="ngat.phase2.ITarget" 
+				extends="ngat.phase2.IPhase2Identity" 
+				factory="ngat.phase2.util.Factory.targetFactory"/>
+				
+				<mapping name="x-target" class="ngat.phase2.XTarget" extends="ngat.phase2.ITarget">
+					<structure map-as="ngat.phase2.XPhase2Identity" 							usage="optional"/>
+				</mapping>
+				
+					<mapping name="x-ephemeris-target" class="ngat.phase2.XEphemerisTarget" extends="ngat.phase2.XTarget">
+						<structure map-as="ngat.phase2.XTarget"										usage="optional"/>
+						<collection field="track" factory="ngat.phase2.XEphemerisTarget.treeSetFactory" 
+							get-method="getEphemerisTrack" set-method="setEphemerisTrack"/>
+				 	</mapping>
+					
+					<mapping name="x-extra-solar-target" class="ngat.phase2.XExtraSolarTarget" extends="ngat.phase2.XTarget" >
+				 		<structure map-as="ngat.phase2.XTarget" usage="optional"/>
+				    	<value name="ra" 					field="ra" 								usage="optional"/>
+						<value name="dec" 					field="dec" 							usage="optional"/>
+						<value name="pm-ra" 				field="pmRA" 							usage="optional"/>
+						<value name="pm-dec" 				field="pmDec" 							usage="optional"/>
+						<value name="parallax" 				field="parallax" 						usage="optional"/>
+						<value name="radial-velocity" 		field="radialVelocity" 					usage="optional"/>
+						<value name="epoch" 				field="epoch" 							usage="optional"/>
+						<value name="frame" 				field="frame" 							usage="optional"/>
+				 	</mapping>
+					
+					<mapping name="x-orbital-elements-target" class="ngat.phase2.XOrbitalElementsTarget" extends="ngat.phase2.XTarget">
+						<structure map-as="ngat.phase2.XTarget" usage="optional"/>
+				 		<structure field="elements" map-as="ngat.phase2.IOrbitalElements" 			usage="optional"/>
+				 	</mapping>
+						
+						<mapping name="i-orbital-elements" class="ngat.phase2.IOrbitalElements" 
+							extends="ngat.phase2.IPhase2" 
+							factory="ngat.phase2.util.Factory.orbitalElementsFactory" />
+						
+					<mapping name="x-sla-named-planet-target" class="ngat.phase2.XSlaNamedPlanetTarget" extends="ngat.phase2.XTarget">
+						<structure map-as="ngat.phase2.XTarget" usage="optional"/>
+				    	<value name="index" 				field="index" 							usage="optional"/>
+				    </mapping>
+					
+		<mapping name="x-iterator-component" class="ngat.phase2.XIteratorComponent" extends="ngat.phase2.ISequenceComponent">
+		 	<value name="component-name" field="componentName" usage="optional"/>
+	 		<structure field="condition" map-as="ngat.phase2.IIteratorCondition" usage="optional"/>
+	 		<collection field="sequence" 
+				factory="org.jibx.runtime.Utility.arrayListFactory" 
+				get-method="listChildComponents" 
+				set-method="setSequence"/>
+	 	</mapping>
+ 
+			<mapping class="ngat.phase2.IIteratorCondition" abstract="true"/>
+		
+				<mapping name="x-iterator-repeat-count-condition" class="ngat.phase2.XIteratorRepeatCountCondition" extends="ngat.phase2.IIteratorCondition">
+				 	<value name="count" field="count" usage="optional"/>
+			 	</mapping>
+
+ 	<!-- *************************** UTILITY OBJECTS *******************************************  -->
+ 	
+ 	<mapping name="semester-account-entry" class="ngat.phase2.util.SemesterAccountEntry">
+ 		<structure field="account" map-as="ngat.phase2.IAccount" 			usage="optional"/>
+		<value name="column1" field="column1" usage="optional"/>
+		<value name="column2" field="column2" usage="optional"/>
+		<value name="column3" field="column3" usage="optional"/>
+ 	</mapping>
+ 	
+	<!-- *************************** JIBX TRANSPORT CONTAINER OBJECTS *************************** -->
+
+	<mapping name="request" class="ngat.jibxsoap.Request" >
+ 		<value name="method-name"				field="methodName"/>
+ 		<collection field="requestParameters" factory="org.jibx.runtime.Utility.arrayListFactory" 
+			get-method="getRequestParameters" set-method="setRequestParameters" usage="optional"/>
+ 	</mapping>
+ 	
+	<mapping name="response" class="ngat.jibxsoap.Response">
+		<collection field="responseParameters" factory="org.jibx.runtime.Utility.arrayListFactory" 
+			get-method="getResponseParameters" set-method="setResponseParameters"  usage="optional"/>
+		<value name="is-collection"				field="isCollection" 				usage="optional"/>
+		<value name="error-message"				field="errorMessage" 				usage="optional"/>
+	</mapping>
+	
+	<mapping name="double-type-parameter" class="ngat.jibxsoap.DoubleTypeParameter" >
+ 		<value name="double-req-param"			field="doubleReqParam" 				usage="optional"/>
+ 	</mapping>
+ 	
+	<mapping name="long-type-parameter" class="ngat.jibxsoap.LongTypeParameter" >
+ 		<value name="long-req-param"			field="longReqParam" 				usage="optional"/>
+ 	</mapping>
+ 	
+ 	<mapping name="null-type-parameter" class="ngat.jibxsoap.NullTypeParameter" />
+
+ 	<mapping name="string-type-parameter" class="ngat.jibxsoap.StringTypeParameter" >
+ 		<value name="string-req-param"			field="stringReqParam" 				usage="optional"/>
+ 	</mapping>
+ 
+ 	<mapping name="int-type-parameter" class="ngat.jibxsoap.IntTypeParameter" >
+ 		<value name="int-req-param"				field="intReqParam" 				usage="optional"/>
+ 	</mapping>
+
+	<mapping name="boolean-type-parameter" class="ngat.jibxsoap.BooleanTypeParameter" >
+ 		<value name="boolean-req-param"			field="booleanReqParam" 			usage="optional"/>
+ 	</mapping>
+
+ 	<mapping name="void-type-parameter" class="ngat.jibxsoap.VoidTypeParameter" />
+ 	
+</binding>

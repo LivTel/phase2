@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><semester-account-entry column1="col1" column2="col2" column3="col3"><x-account name="MyAccount" description="This is an account" allocated="300.0" consumed="100.0"><x-phase2-identity id="9"/></x-account></semester-account-entry>
