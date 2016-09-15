@@ -1,0 +1,13 @@
+javalib_third_party/jibx/bcel.jar
+javalib_third_party/jibx/jibx-bind.jar
+javalib_third_party/jibx/jibx-extras.jar
+javalib_third_party/jibx/jibx-run.jar
+javalib_third_party/jibx/log4j-1.2.14.jar
+javalib_third_party/jibx/qdox-1.6.1.jar
+javalib_third_party/jibx/stax-api.jar
+javalib_third_party/jibx/wstx-asl.jar
+javalib_third_party/jibx/xmlpull_1_1_4.jar
+javalib_third_party/jibx/xpp3.jar
+javalib_third_party/jibx_soap/jibx-genbinding.jar
+javalib_third_party/jibx_soap/jibx-genschema.jar
+javalib_third_party/jibx_soap/jibx-soap.jar
