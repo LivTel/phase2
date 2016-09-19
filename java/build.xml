@@ -5,12 +5,23 @@
 	<description>"Phase2 Data Objects and JiBX Transport"</description>
 
 	<!-- The directories -->
-  	<property name="class-dir" value="/home/dev/bin/phase2/java" />
-	<property name="deploy-dir" value="/home/dev/bin/javalib"/>
-	<property name="lib-dir" value="/home/dev/bin/javalib" />
-	<property name="third-party-lib-dir" value="/home/dev/bin/javalib_third_party" />
+	<property name="local-dev-path" value="/home/nrc/local_dev" />
+		
+	<property name="workspace-path" value="${local-dev-path}/local_workspace" />
+	
+	<property name="project-home-dir" value="${workspace-path}/Phase2" />
+
+	<property name="class-dir" value="${project-home-dir}/bin" />
+	
+	<property name="deploy-dir" value="${local-dev-path}/bin/javalib"/>
+	
+	<property name="lib-dir" value="${local-dev-path}/bin/javalib" />
+	
+	<property name="third-party-lib-dir" value="${local-dev-path}/bin/javalib_third_party" />
+	
 	<property name="jibx-lib-dir" value="${third-party-lib-dir}/jibx" />
 
+	
 	<!-- other definitions -->
 
 	<property name="jar-name" value="ngat_new_phase2"/>
@@ -144,4 +155,3 @@
 	</target>
 
 </project>
-
