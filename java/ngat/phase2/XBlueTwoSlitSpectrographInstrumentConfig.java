@@ -2,6 +2,7 @@ package ngat.phase2;
 
 import java.io.Serializable;
 
+
 //LOTUS slit configuration
 public class XBlueTwoSlitSpectrographInstrumentConfig extends XInstrumentConfig implements Serializable {
 
