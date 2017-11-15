@@ -572,6 +572,11 @@
 						<value name="gain" 				field="gain"								usage="optional"/>
 					</mapping>
 					
+					<mapping name="x-moptop-instrument-config" class="ngat.phase2.XMoptopInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
+						<structure map-as="ngat.phase2.XInstrumentConfig"							usage="optional"/>
+						<value name="dichroicState" 	field="dichroicState"						usage="optional"/>
+					</mapping>
+					
 					<mapping name="x-spectrograph-instrument-config" class="ngat.phase2.XSpectrographInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
 						<structure map-as="ngat.phase2.XInstrumentConfig"							usage="optional"/>
 						<value name="wavelength" 			field="wavelength"						usage="optional"/>
@@ -584,6 +589,11 @@
 						<value name="slit-position" 				field="slitPosition"							usage="optional"/>
 					</mapping>
     
+    				<mapping name="x-blue-two-slit-spectrograph-instrument-config" class="ngat.phase2.XBlueTwoSlitSpectrographInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
+						<structure map-as="ngat.phase2.XInstrumentConfig"								usage="optional"/>
+						<value name="slit-width" 				field="slitWidth"								    usage="optional"/>
+					</mapping>
+
 			<mapping name="i-mosaic-offset" class="ngat.phase2.IMosaicOffset" 
 				extends="ngat.phase2.IExecutiveAction" 
 				factory="ngat.phase2.util.Factory.mosaicOffsetFactory"/>
