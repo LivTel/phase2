@@ -112,6 +112,15 @@ public class  XTransaction extends XPhase2Identity implements ITransaction, Seri
     
     /** @return A string representation of this XTransaction.*/
 	public String toString() {
-		return "XTransaction ["+getID()+"] "+getName()+", Time="+time+", Amt="+amount+", Ref="+clientReference+", Cmt="+comment;
+		String s = this.getClass().getName() + "[";
+		s += "id = " + getID() + ", ";
+		s += "name = " + getName() + ", ";
+		s += "balanceType = " + balanceType + ", ";
+		s += "time = " + time + ", ";
+		s += "amt = " + amount + ", ";
+		s += "clientref = " + clientReference + ", ";
+		s += "comment = " + comment + "] ";
+		return s;
 	}
+	
 }

@@ -18,7 +18,7 @@ public class XAcquisitionConfig implements IAcquisitionConfig, Serializable {
 	IAcquisitionConfig.HIGH_PRECISION
 	IAcquisitionConfig.PRECISION_NOT_SET
 	 */
-	private int precision = IAcquisitionConfig.PRECISION_NOT_SET; //initially not set
+	private int precision;
 	
 	/* The name of the instrument being acquired for */
 	private String targetInstrumentName = null;
@@ -29,10 +29,13 @@ public class XAcquisitionConfig implements IAcquisitionConfig, Serializable {
 	/* If the acquisition instrument is unavailable, allow the use of an alternative acquisition instrument */
 	private boolean allowAlternative;
 	
-    public XAcquisitionConfig() {}
+    public XAcquisitionConfig() {
+    	precision = IAcquisitionConfig.PRECISION_NOT_SET; //initially not set
+    }
 
     public XAcquisitionConfig(int mode) {
 		this.mode = mode;
+		precision = IAcquisitionConfig.PRECISION_NOT_SET; //initially not set
 	}
     
     /**
@@ -120,7 +123,7 @@ public class XAcquisitionConfig implements IAcquisitionConfig, Serializable {
 				break;
 		}
 		s += ", precision=";
-		switch (mode) {
+		switch (precision) {
 			case IAcquisitionConfig.PRECISION_HIGH:
 				s+="HIGH_PRECISION";
 				break;
