@@ -34,4 +34,21 @@ public class XMoptopInstrumentConfig extends XInstrumentConfig implements Serial
 		", dichroicState="+getDichroicState();
 	}
 	
+	public String dichroicStateToString()
+	{
+		return dichroicStateToString(dichroicState);
+	}
+	
+	public static String dichroicStateToString(int dichroicState) 
+	{
+		switch (dichroicState) 
+		{
+			case DICHROIC_STATE_OUT_BEAM:
+				return "OUT OF BEAM";
+			case DICHROIC_STATE_IN_BEAM:
+				return "IN BEAM";
+			default:
+				return "UNKNOWN";
+		}
+	}	
 }
