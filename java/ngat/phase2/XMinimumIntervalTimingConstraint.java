@@ -45,6 +45,6 @@ public class XMinimumIntervalTimingConstraint implements ITimingConstraint, Seri
     	return "MinInterval [s=" +TextUtil.getDisplayFormattedDate(start) +
 		", e="+TextUtil.getDisplayFormattedDate(end) +
 		", i="+ new TimeWrapper(minimumInterval).getTimeAsString() +
-		", r="+new TimeWrapper(maximumRepeats).getTimeAsString() + "]";
+		", r="+maximumRepeats + "]";
     }
 }
