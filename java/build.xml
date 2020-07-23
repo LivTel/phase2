@@ -7,7 +7,7 @@
 	<!-- The directories -->
 	<property name="local-dev-path" value="/home/dev" />
 		
-	<property name="workspace-path" value="/home/cjm/eclipse-workspace" />
+	<property name="workspace-path" value="/home/cjm/eclipse-kepler-workspace" />
 	
 	<property name="project-home-dir" value="${workspace-path}/phase2" />
 
@@ -19,7 +19,7 @@
 	
 	<property name="third-party-lib-dir" value="${local-dev-path}/bin/javalib_third_party" />
 	
-	<property name="jibx-lib-dir" value="${third-party-lib-dir}/jibx_1_3_3" />
+	<property name="jibx-lib-dir" value="${third-party-lib-dir}/jibx" />
 
 	
 	<!-- other definitions -->
