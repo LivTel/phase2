@@ -5,11 +5,11 @@
 	<description>"Phase2 Data Objects and JiBX Transport"</description>
 
 	<!-- The directories -->
-	<property name="local-dev-path" value="/home/cjm/local_dev" />
+	<property name="local-dev-path" value="/home/dev" />
 		
-	<property name="workspace-path" value="${local-dev-path}/local_workspace" />
+	<property name="workspace-path" value="/home/cjm/eclipse-workspace" />
 	
-	<property name="project-home-dir" value="${workspace-path}/Phase2" />
+	<property name="project-home-dir" value="${workspace-path}/phase2" />
 
 	<property name="class-dir" value="${project-home-dir}/bin" />
 	
@@ -19,7 +19,7 @@
 	
 	<property name="third-party-lib-dir" value="${local-dev-path}/bin/javalib_third_party" />
 	
-	<property name="jibx-lib-dir" value="${third-party-lib-dir}/jibx" />
+	<property name="jibx-lib-dir" value="${third-party-lib-dir}/jibx_1_3_3" />
 
 	
 	<!-- other definitions -->

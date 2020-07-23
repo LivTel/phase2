@@ -21,7 +21,7 @@
  	<mapping class="ngat.phase2.ILinkage" abstract="true"/>
  	<mapping class="ngat.phase2.ILock" abstract="true"/>
  	<mapping class="ngat.phase2.ILoginRecord" abstract="true"/>
- 	<mapping class="ngat.phase2.IObservingConstraint"abstract="true"/>
+ 	<mapping class="ngat.phase2.IObservingConstraint" abstract="true"/>
  	<mapping class="ngat.phase2.IObservingPreference" abstract="true"/>
  	<mapping class="ngat.phase2.IProgram" abstract="true"/>
  	<mapping class="ngat.phase2.IProposal" abstract="true"/>
