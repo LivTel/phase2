@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/bcel.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/jibx-bind.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/jibx-extras.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/jibx-run.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/qdox-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/stax-api.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/wstx-asl.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/xmlpull_1_1_4.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx/xpp3.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx_soap/jibx-genbinding.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx_soap/jibx-genschema.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib_third_party/jibx_soap/jibx-soap.jar"/>
+	<classpathentry kind="lib" path="/home/dev/bin/javalib/ngat_astrometry.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
