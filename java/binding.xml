@@ -574,7 +574,8 @@
 					
 					<mapping name="x-moptop-instrument-config" class="ngat.phase2.XMoptopInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
 						<structure map-as="ngat.phase2.XInstrumentConfig"							usage="optional"/>
-						<value name="dichroicState" 	field="dichroicState"						usage="optional"/>
+						<structure field="filterSpec" map-as="ngat.phase2.XFilterSpec" usage="optional"/>
+						<value name="rotorSpeed" 	field="rotorSpeed"						usage="optional"/>
 					</mapping>
 					
 					<mapping name="x-spectrograph-instrument-config" class="ngat.phase2.XSpectrographInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">

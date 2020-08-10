@@ -5,48 +5,125 @@ import java.io.Serializable;
 public class XMoptopInstrumentConfig extends XInstrumentConfig implements Serializable {
 
  	private static final long serialVersionUID = -6080756087703394705L;
-    public final static int DICHROIC_STATE_OUT_BEAM = 1;
-    public final static int DICHROIC_STATE_IN_BEAM = 2;
+	/**
+	 * Rotor speed denoting an unknown rotor speed.
+	 */
+	public final static int ROTOR_SPEED_UNKNOWN = 0;
+	/**
+	 * Rotor speed denoting a slow rotor speed.
+	 */
+	public final static int ROTOR_SPEED_SLOW = 1;
+	/**
+	 * Rotor speed denoting a fast rotor speed.
+	 */
+	public final static int ROTOR_SPEED_FAST = 2;
+	/**
+	 * The storage integer for the rotor speed.
+	 * @see #ROTOR_SPEED_SLOW
+	 * @see #ROTOR_SPEED_FAST
+	 */
+ 	private int rotorSpeed;
+ 	/** 
+ 	 * A list of filters.
+ 	 * @see XFilterSpec
+ 	 */
+ 	private XFilterSpec filterSpec;
 
- 	private int dichroicState;
-    
-	
-	public int getDichroicState() {
-		return dichroicState;
-	}
-
-	public void setDichroicState(int dichroicState) {
-		this.dichroicState = dichroicState;
-	}
-
-	public XMoptopInstrumentConfig() {
+	/**
+	 * Constructor. The filterSpec is constructed.
+	 * @see #filterSpec
+	 */
+	public XMoptopInstrumentConfig() 
+	{
 		super();
+		filterSpec = new XFilterSpec();
 	}
 	
-	public XMoptopInstrumentConfig(String name) {
+	/**
+	 * Constructor. The filterSpec is constructed.
+	 * @param name The name of the configuration.
+	 * @see #filterSpec
+	 */
+	public XMoptopInstrumentConfig(String name) 
+	{
 		super(name);
+		filterSpec = new XFilterSpec();
 	}
 	
-	public String toString() {
+	/** 
+	 * Returns the rotor speed.
+	 * @return The rotor speed requested in this config, legal configs have one of:
+	 *         ROTOR_SPEED_SLOW, ROTOR_SPEED_FAST.
+	 * @see #rotorSpeed
+	 * @see #ROTOR_SPEED_SLOW
+	 * @see #ROTOR_SPEED_FAST
+	 */
+	public int getRotorSpeed()
+	{
+		return rotorSpeed;
+	}
+
+	/** 
+	 * Sets the rotor speed.
+	 * @param rs The rotor speed, one of ROTOR_SPEED_SLOW, ROTOR_SPEED_FAST.
+	 * @see #rotorSpeed
+	 * @see #ROTOR_SPEED_SLOW
+	 * @see #ROTOR_SPEED_FAST
+	 */
+	public void setRotorSpeed(int rs)
+	{ 
+		this.rotorSpeed = rs;
+	}
+	
+	/** 
+	 * Set the filters.
+	 * @param filterSpec The list of filters.
+	 * @see #filterSpec
+	 * @see XFilterSpec
+	 */
+	public void setFilterSpec(XFilterSpec filterSpec) 
+	{
+		this.filterSpec = filterSpec;
+	}
+	
+	/**
+	 * Get a list of the filters. 
+	 * @return the filters.
+	 * @see #filterSpec
+	 * @see XFilterSpec
+	 */
+	public XFilterSpec getFilterSpec() 
+	{
+		return filterSpec;
+	}
+	
+	/**
+	 * Produce a string version of this configuration.
+	 * @see #getInstrumentName
+	 * @see #getDetectorConfig
+	 */
+	public String toString() 
+	{
 		return this.getClass().getName() +" ["+getID()+"] "+getName()+
 		", instrument="+getInstrumentName()+
 		", detector="+getDetectorConfig()+
-		", dichroicState="+getDichroicState();
+		", filter="+getFilterSpec()+
+		", rotorSpeed="+getRotorSpeed();
 	}
 	
-	public String dichroicStateToString()
+	public String rotorSpeedToString()
 	{
-		return dichroicStateToString(dichroicState);
+		return rotorSpeedToString(rotorSpeed);
 	}
 	
-	public static String dichroicStateToString(int dichroicState) 
+	public static String rotorSpeedToString(int rotorSpeed) 
 	{
-		switch (dichroicState) 
+		switch (rotorSpeed) 
 		{
-			case DICHROIC_STATE_OUT_BEAM:
-				return "OUT OF BEAM";
-			case DICHROIC_STATE_IN_BEAM:
-				return "IN BEAM";
+			case ROTOR_SPEED_SLOW:
+				return "SLOW";
+			case ROTOR_SPEED_FAST:
+				return "FAST";
 			default:
 				return "UNKNOWN";
 		}
