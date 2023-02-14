@@ -6,33 +6,61 @@ public class XImagerInstrumentConfig extends XInstrumentConfig implements Serial
 	
     public static final long serialVersionUID = -8123659272216672779L;
 
-	/** A list of filters.*/
-	private XFilterSpec filterSpec;
+	/**
+	 * A list of filters.
+	 * @see XFilterSpec
+	 */
+	protected XFilterSpec filterSpec;
 	
-	/** Create an XImagerInstrumentConfig.*/
-	public XImagerInstrumentConfig() {
+	/**
+	 * Create an XImagerInstrumentConfig.
+	 */
+	public XImagerInstrumentConfig()
+	{
 		super();
 		filterSpec = new XFilterSpec();
 	}
 	
-	/** Create an XImagerInstrumentConfig with supplied name.*/
-	public XImagerInstrumentConfig(String name) {
+	/**
+	 * Create an XImagerInstrumentConfig with supplied name.
+	 * @param name The name of the configuration.
+	 */
+	public XImagerInstrumentConfig(String name)
+	{
 		super(name);
 		filterSpec = new XFilterSpec();
 	}
 	
-	/** Set the filters.*/
-	public void setFilterSpec(XFilterSpec filterSpec) {
+	/**
+	 * Set the filters.
+	 * @param filterSpec The list of filters.
+	 * @see #filterSpec
+	 * @see XFilterSpec
+	 */
+	public void setFilterSpec(XFilterSpec filterSpec)
+	{
 		this.filterSpec = filterSpec;
 	}
 	
-	/** @return the filters.*/
-	public XFilterSpec getFilterSpec() {
+	/**
+	 * Get a list of the filters. 
+	 * @return the filters.
+	 * @see #filterSpec
+	 * @see XFilterSpec
+	 */
+	public XFilterSpec getFilterSpec()
+	{
 		return filterSpec;
 	}
 	
-	/** Return a readable description of this config.*/
-	public String toString() {
+	/**
+	 * Produce a string version of this configuration.
+	 * @see #getInstrumentName
+	 * @see #getDetectorConfig
+	 * @see #filterSpec
+	 */
+	public String toString()
+	{
 		String s = this.getClass().getName() +"["+getID()+
 		", name="+getName() +
 		", instrumentName="+getInstrumentName()+

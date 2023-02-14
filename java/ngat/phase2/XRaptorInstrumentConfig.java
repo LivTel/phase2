@@ -2,7 +2,7 @@ package ngat.phase2;
 
 import java.io.Serializable;
 
-public class XRaptorInstrumentConfig extends XInstrumentConfig implements Serializable
+public class XRaptorInstrumentConfig extends XImagerInstrumentConfig implements Serializable
 {
  	private static final long serialVersionUID = -4511994683582741837L;
 	/**
@@ -33,31 +33,22 @@ public class XRaptorInstrumentConfig extends XInstrumentConfig implements Serial
 	 * fixed values, dependant on a Raptor API '.fmt' file being generated for the relevant length.
 	 */
 	private int coaddExposureLength;
- 	/** 
- 	 * A list of filters.
- 	 * @see XFilterSpec
- 	 */
- 	private XFilterSpec filterSpec;
 
 	/**
-	 * Constructor. The filterSpec is constructed.
-	 * @see #filterSpec
+	 * Constructor. 
 	 */
 	public XRaptorInstrumentConfig() 
 	{
 		super();
-		filterSpec = new XFilterSpec();
 	}
 	
 	/**
-	 * Constructor. The filterSpec is constructed.
+	 * Constructor. 
 	 * @param name The name of the configuration.
-	 * @see #filterSpec
 	 */
 	public XRaptorInstrumentConfig(String name) 
 	{
 		super(name);
-		filterSpec = new XFilterSpec();
 	}
 	
 	/** 
@@ -109,28 +100,6 @@ public class XRaptorInstrumentConfig extends XInstrumentConfig implements Serial
 	public void setCoaddExposureLength(int l)
 	{ 
 		this.coaddExposureLength = l;
-	}
-	
-	/** 
-	 * Set the filters.
-	 * @param filterSpec The list of filters.
-	 * @see #filterSpec
-	 * @see XFilterSpec
-	 */
-	public void setFilterSpec(XFilterSpec filterSpec) 
-	{
-		this.filterSpec = filterSpec;
-	}
-	
-	/**
-	 * Get a list of the filters. 
-	 * @return the filters.
-	 * @see #filterSpec
-	 * @see XFilterSpec
-	 */
-	public XFilterSpec getFilterSpec() 
-	{
-		return filterSpec;
 	}
 	
 	/**
