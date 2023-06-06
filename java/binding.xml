@@ -590,7 +590,7 @@
 						<value name="slit-position" 				field="slitPosition"							usage="optional"/>
 					</mapping>
 					
-					<mapping name="x-raptor-instrument-config" class="ngat.phase2.XRaptorInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
+					<mapping name="x-liric-instrument-config" class="ngat.phase2.XLiricInstrumentConfig" extends="ngat.phase2.XInstrumentConfig">
 						<structure map-as="ngat.phase2.XInstrumentConfig" usage="optional"/>
 						<structure field="filterSpec" map-as="ngat.phase2.XFilterSpec" usage="optional"/>
 						<value name="nudgematicOffsetSize" 	field="nudgematicOffsetSize"	usage="optional"/>

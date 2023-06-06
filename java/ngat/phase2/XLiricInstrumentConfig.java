@@ -2,27 +2,27 @@ package ngat.phase2;
 
 import java.io.Serializable;
 
-public class XRaptorInstrumentConfig extends XImagerInstrumentConfig implements Serializable
+public class XLiricInstrumentConfig extends XImagerInstrumentConfig implements Serializable
 {
  	private static final long serialVersionUID = -4511994683582741837L;
 	/**
 	 * Nudgematic offset sizes - in this case, none.
-	 * These constants match those in ngat.phase2.RaptorConfig at the moment - do not rely on this though.
+	 * These constants match those in ngat.phase2.LiricConfig at the moment - do not rely on this though.
 	 */
 	public final static int NUDGEMATIC_OFFSET_SIZE_NONE = 0;
 	/**
 	 * Nudgematic offset sizes - in this case, small.
-	 * These constants match those in ngat.phase2.RaptorConfig at the moment - do not rely on this though.
+	 * These constants match those in ngat.phase2.LiricConfig at the moment - do not rely on this though.
 	 */
 	public final static int NUDGEMATIC_OFFSET_SIZE_SMALL = 1;
 	/**
 	 * Nudgematic offset sizes - in this case, large.
-	 * These constants match those in ngat.phase2.RaptorConfig at the moment - do not rely on this though.
+	 * These constants match those in ngat.phase2.LiricConfig at the moment - do not rely on this though.
 	 */
 	public final static int NUDGEMATIC_OFFSET_SIZE_LARGE = 2;
 	/**
 	 * Whether the nudgematic will be doing small, large or no offsets.
-	 * These constants match those in ngat.phase2.RaptorConfig at the moment - do not rely on this though.
+	 * These constants match those in ngat.phase2.LiricConfig at the moment - do not rely on this though.
 	 * @see #NUDGEMATIC_OFFSET_SIZE_NONE
 	 * @see #NUDGEMATIC_OFFSET_SIZE_SMALL
 	 * @see #NUDGEMATIC_OFFSET_SIZE_LARGE
@@ -30,14 +30,14 @@ public class XRaptorInstrumentConfig extends XImagerInstrumentConfig implements 
 	private int nudgematicOffsetSize;
 	/**
 	 * The exposure length of an individual coadd, in milliseconds. This value can only take a few
-	 * fixed values, dependant on a Raptor API '.fmt' file being generated for the relevant length.
+	 * fixed values, dependant on a Liric Raptor API '.fmt' file being generated for the relevant length.
 	 */
 	private int coaddExposureLength;
 
 	/**
 	 * Constructor. 
 	 */
-	public XRaptorInstrumentConfig() 
+	public XLiricInstrumentConfig() 
 	{
 		super();
 	}
@@ -46,7 +46,7 @@ public class XRaptorInstrumentConfig extends XImagerInstrumentConfig implements 
 	 * Constructor. 
 	 * @param name The name of the configuration.
 	 */
-	public XRaptorInstrumentConfig(String name) 
+	public XLiricInstrumentConfig(String name) 
 	{
 		super(name);
 	}
@@ -83,7 +83,7 @@ public class XRaptorInstrumentConfig extends XImagerInstrumentConfig implements 
 	 * Returns the coadd exposure length.
 	 * @return The coadd exposure length, in milliseconds, requested in this config. 
 	 *         There is only a limited subset of legal values, corresponding to '.fmt' files installed in the
-	 *         Raptor control software.
+	 *         Liric control software.
 	 * @see #coaddExposureLength
 	 */
 	public int getCoaddExposureLength()
@@ -94,7 +94,7 @@ public class XRaptorInstrumentConfig extends XImagerInstrumentConfig implements 
 	/** 
 	 * Sets the coadd exposure length.
 	 * @param l The coadd exposure length in milliseconds. This can only be a value that has a corresponding
-	 *        '.fmt' file installed in the Raptor control software.
+	 *        '.fmt' file installed in the Liric control software.
 	 * @see #coaddExposureLength
 	 */
 	public void setCoaddExposureLength(int l)
